@@ -5,12 +5,12 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
     if (res.ok) {
       return res.json();
     } else {
-      return Promise.reject(`Error: $(res.status)`);
+      return Promise.reject(`Error: ${res.status}`);
     }
   });
 };
 
-const filterWeatherData = (data) => {
+export const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
   result.temp = { F: data.main.temp };
