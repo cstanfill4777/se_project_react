@@ -1,0 +1,13 @@
+.modal__close {
+  background-image: url("../../assets/close.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  width: 20px;
+  height: 20px;
+
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
