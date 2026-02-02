@@ -16,7 +16,10 @@
 }
 
 .modal__title {
-  margin: 0;
+  margin: 0 0 24px;
+  font-weight: 700;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .modal__close {
@@ -50,6 +53,10 @@
   max-width: 496px;
   box-sizing: border-box;
   width: 100%;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000;
 }
 
 .modal__form {
@@ -68,6 +75,25 @@
   outline: none;
 }
 
+.modal__input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__label,
+.modal__legend {
+  font-weight: 700;
+}
+
+.modal__label_type_radio {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+}
+
+.modal__label_type_radio:has(.modal__radio-input:checked) {
+  color: #000;
+  font-weight: 700;
+}
+
 .modal__radio-buttons {
   border: none;
   padding: 0;
@@ -83,4 +109,6 @@
   background-color: #bdbdbd;
   border: none;
   border-radius: 4px;
+  color: #fff;
+  font-weight: 700;
 }
