@@ -1,2 +1,23 @@
 .footer {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+
+  height: 20px;
+  padding: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  color: #000;
+}
+
+.footer__text,
+.footer__year {
+  margin: 0;
 }
