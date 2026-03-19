@@ -11,6 +11,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import { defaultClothingItems } from "../../utils/constants";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -69,6 +70,7 @@ function App() {
           />
         </div>
         <Footer />
+        <Profile />
         <ModalWithForm
           title="New garment"
           buttonText="Add garment"
