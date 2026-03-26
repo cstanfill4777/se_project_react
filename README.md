@@ -6,9 +6,11 @@ A React application that displays current weather data and suggests clothing ite
 
 - Fetches current weather data on application load
 - Displays the current date, location, and temperature
-- Shows a list of clothing items filtered by weather type (hot, warm, cold)
-- Allows users to open a preview modal for clothing items
-- Includes a modal form for adding new garments (UI only)
+- Shows a list of clothing items filtered by weather type
+- Allows users to add new garments through a modal form
+- Allows users to delete garments from the preview modal
+- Uses a mock API with json-server to fetch, add, and delete clothing items
+- Includes routing between the main page and profile page
 
 ## Technologies & Techniques
 
@@ -16,6 +18,9 @@ A React application that displays current weather data and suggests clothing ite
 - Vite
 - JavaScript (ES6)
 - CSS
+- React Router
+- Context API
+- json-server
 - OpenWeather API
 - Semantic HTML
 - Responsive layout
@@ -26,4 +31,5 @@ A React application that displays current weather data and suggests clothing ite
 ```bash
 npm install
 npm run dev
+npx json-server --watch db.json --port 3001
 ```

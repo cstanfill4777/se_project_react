@@ -1,11 +1,15 @@
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Profile() {
+function Profile({ clothingItems, handleCardClick, handleAddClick }) {
   return (
-    <div>
+    <div className="profile">
       <SideBar />
-      <ClothesSection />
+      <ClothesSection
+        clothingItems={clothingItems}
+        handleCardClick={handleCardClick}
+        handleAddClick={handleAddClick}
+      />
     </div>
   );
 }

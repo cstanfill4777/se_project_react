@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "_id": "1",
+      "name": "Cap",
+      "weather": "hot",
+      "link": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "_id": "2",
+      "name": "Jacket",
+      "weather": "cold",
+      "link": "https://images.unsplash.com/photo-1548883354-94bcfe321c9f?auto=format&fit=crop&w=800&q=80"
+    }
+  ]
+}

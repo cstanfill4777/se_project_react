@@ -10,8 +10,6 @@ function Header({ handleAddClick, weatherData }) {
     day: "numeric",
   });
 
-  <ToggleSwitch />;
-
   return (
     <header className="header">
       <Link to="/">Home</Link>
@@ -20,6 +18,7 @@ function Header({ handleAddClick, weatherData }) {
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
+      <ToggleSwitch />
       <button
         onClick={handleAddClick}
         type="button"
