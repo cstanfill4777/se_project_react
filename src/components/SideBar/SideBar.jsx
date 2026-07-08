@@ -1,10 +1,36 @@
-import avatar from "../../assets/avatar.png";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function SideBar() {
+function SideBar({ onSignOut }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const firstLetter = currentUser?.name?.charAt(0)?.toUpperCase();
+
   return (
     <div className="sidebar">
-      <img src={avatar} alt="Terrence Tegegne" className="sidebar__avatar" />
-      <p className="sidebar__username">Terrence Tegegne</p>
+      {currentUser?.avatar ? (
+        <img
+          src={currentUser.avatar}
+          alt={currentUser.name}
+          className="sidebar__avatar"
+        />
+      ) : (
+        <div className="sidebar__avatar sidebar__avatar-placeholder">
+          {firstLetter}
+        </div>
+      )}
+
+      <div className="sidebar__user-info">
+        <p className="sidebar__username">{currentUser?.name}</p>
+
+        <button
+          type="button"
+          className="sidebar__signout-btn"
+          onClick={onSignOut}
+        >
+          Sign Out
+        </button>
+      </div>
     </div>
   );
 }
