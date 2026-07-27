@@ -7,15 +7,18 @@ function Profile({
   handleCardClick,
   handleAddClick,
   onSignOut,
+  onCardLike,
+  onEditProfile,
 }) {
   return (
     <div className="profile">
-      <SideBar onSignOut={onSignOut} />
+      <SideBar onSignOut={onSignOut} onEditProfile={onEditProfile} />
 
       <ClothesSection
         clothingItems={clothingItems}
         handleCardClick={handleCardClick}
         handleAddClick={handleAddClick}
+        onCardLike={onCardLike}
       />
     </div>
   );

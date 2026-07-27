@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -14,8 +15,19 @@ import Profile from "../Profile/Profile";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { getItems, addItem, deleteItem } from "../../utils/api";
+
 import * as auth from "../../utils/auth";
+
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  addCardLike,
+  removeCardLike,
+  editProfile,
+} from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -66,6 +78,7 @@ function App() {
         const normalizedItem = {
           ...newItem,
           _id: newItem._id || newItem.id,
+          link: newItem.link || newItem.imageUrl,
         };
         setClothingItems((prevItems) => [normalizedItem, ...prevItems]);
         closeActiveModal();
@@ -115,6 +128,43 @@ function App() {
     setIsLoggedIn(false);
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+
+    const request = isLiked
+      ? removeCardLike(id, token)
+      : addCardLike(id, token);
+
+    return request
+      .then((updatedCard) => {
+        const normalizedCard = {
+          ...updatedCard,
+          _id: updatedCard._id || updatedCard.id,
+          link: updatedCard.link || updatedCard.imageUrl,
+        };
+
+        setClothingItems((items) =>
+          items.map((item) => (item._id === id ? normalizedCard : item)),
+        );
+      })
+      .catch(console.error);
+  };
+
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
+  };
+
+  const handleEditProfile = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+
+    return editProfile({ name, avatar }, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("jwt");
 
@@ -148,6 +198,7 @@ function App() {
         const normalizedItems = items.map((item) => ({
           ...item,
           _id: item._id || item.id,
+          link: item.link || item.imageUrl,
         }));
         setClothingItems(normalizedItems);
       })
@@ -177,22 +228,23 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
               <Route
                 path="/profile"
                 element={
-                  isLoggedIn ? (
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
                       clothingItems={clothingItems}
                       handleCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                       onSignOut={handleSignOut}
+                      onCardLike={handleCardLike}
+                      onEditProfile={handleEditProfileClick}
                     />
-                  ) : (
-                    <Navigate to="/" replace />
-                  )
+                  </ProtectedRoute>
                 }
               />
             </Routes>
@@ -223,6 +275,12 @@ function App() {
             isOpen={activeModal === "register"}
             onClose={closeActiveModal}
             onRegister={handleRegister}
+          />
+
+          <EditProfileModal
+            isOpen={activeModal === "edit-profile"}
+            onClose={closeActiveModal}
+            onEditProfile={handleEditProfile}
           />
         </div>
       </CurrentTemperatureUnitContext.Provider>

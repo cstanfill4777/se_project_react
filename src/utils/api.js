@@ -22,7 +22,11 @@ export function addItem(item, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: getAuthHeaders(token),
-    body: JSON.stringify(item),
+    body: JSON.stringify({
+      name: item.name,
+      weather: item.weather,
+      imageUrl: item.link,
+    }),
   }).then(checkResponse);
 }
 

@@ -20,16 +20,23 @@ A React application that displays current weather data and suggests clothing ite
 - CSS
 - React Router
 - Context API
-- json-server
 - OpenWeather API
 - Semantic HTML
 - Responsive layout
 - Component-based architecture
 
+## Backend
+
+This project uses the Express backend from Sprint 12/13.
+
+Backend repository:
+https://github.com/cstanfill4777/se_project_express
+
 ## Project Setup
+
+Frontend:
 
 ```bash
 npm install
 npm run dev
-npx json-server --watch db.json --port 3001
 ```
