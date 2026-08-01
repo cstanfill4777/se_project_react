@@ -1,0 +1,39 @@
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.sidebar__avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c4c4c4;
+  color: #fff;
+}
+
+.sidebar {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.sidebar__user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar__user-info button {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar__signout-btn {
+  color: #000;
+}

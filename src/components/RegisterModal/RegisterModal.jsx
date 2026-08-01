@@ -1,15 +1,17 @@
-import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
-function RegisterModal({ isOpen, onClose, onRegister }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+function RegisterModal({ isOpen, onClose, onRegister, onLoginClick }) {
+  const { values, handleChange } = useForm({
+    email: "",
+    password: "",
+    name: "",
+    avatar: "",
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
-    onRegister({ email, password, name, avatar });
+    onRegister(values);
   }
 
   return (
@@ -27,8 +29,8 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
           className="modal__input"
           type="email"
           name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={values.email}
+          onChange={handleChange}
           required
         />
       </label>
@@ -39,8 +41,8 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
           className="modal__input"
           type="password"
           name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange}
           required
         />
       </label>
@@ -51,8 +53,8 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
           className="modal__input"
           type="text"
           name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={values.name}
+          onChange={handleChange}
           required
         />
       </label>
@@ -63,10 +65,19 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
           className="modal__input"
           type="url"
           name="avatar"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
+          value={values.avatar}
+          onChange={handleChange}
+          required
         />
       </label>
+
+      <button
+        type="button"
+        className="modal__secondary-button"
+        onClick={onLoginClick}
+      >
+        or Log In
+      </button>
     </ModalWithForm>
   );
 }

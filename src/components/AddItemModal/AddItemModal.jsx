@@ -10,13 +10,15 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem(values).then(() => {
-      setValues({
-        name: "",
-        link: "",
-        weather: "",
-      });
-    });
+    onAddItem(values)
+      .then(() => {
+        setValues({
+          name: "",
+          link: "",
+          weather: "",
+        });
+      })
+      .catch(console.error);
   }
 
   return (

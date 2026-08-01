@@ -73,17 +73,15 @@ function App() {
   const handleAddItem = (item) => {
     const token = localStorage.getItem("jwt");
 
-    return addItem(item, token)
-      .then((newItem) => {
-        const normalizedItem = {
-          ...newItem,
-          _id: newItem._id || newItem.id,
-          link: newItem.link || newItem.imageUrl,
-        };
-        setClothingItems((prevItems) => [normalizedItem, ...prevItems]);
-        closeActiveModal();
-      })
-      .catch(console.error);
+    return addItem(item, token).then((newItem) => {
+      const normalizedItem = {
+        ...newItem,
+        _id: newItem._id || newItem.id,
+        link: newItem.link || newItem.imageUrl,
+      };
+      setClothingItems((prevItems) => [normalizedItem, ...prevItems]);
+      closeActiveModal();
+    });
   };
 
   const handleDeleteItem = (card) => {
@@ -269,12 +267,14 @@ function App() {
             isOpen={activeModal === "login"}
             onClose={closeActiveModal}
             onLogin={handleLogin}
+            onRegisterClick={handleRegisterClick}
           />
 
           <RegisterModal
             isOpen={activeModal === "register"}
             onClose={closeActiveModal}
             onRegister={handleRegister}
+            onLoginClick={handleLoginClick}
           />
 
           <EditProfileModal
