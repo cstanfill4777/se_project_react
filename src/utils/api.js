@@ -1,4 +1,7 @@
-export const baseUrl = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.cstanfill4777.servernux.com"
+    : "http://localhost:3001";
 
 export function checkResponse(res) {
   if (!res.ok) {
